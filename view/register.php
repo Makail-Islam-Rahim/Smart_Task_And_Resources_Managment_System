@@ -20,8 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-<form method="post" action="">
+<!doctype html>
+<html>
+    <head></head>
+    <body>
+    <form method="post" action="">
     <h2>Register</h2>
     Name: <input type="text" name="name" required><br>
     Email: <input type="email" name="email" required><br>
@@ -42,4 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <option value="Other">Other</option>
     </select><br>
     <button type="submit">Register</button>
-</form>
+    </form>
+
+    </body>
+</html>

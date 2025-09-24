@@ -1,34 +1,59 @@
 <?php
-session_start();
-include("db.php");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $sql = "SELECT * FROM user WHERE email='$email' LIMIT 1";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['role'] = $row['role'];
-            header("Location: welcome.php");
-            exit;
-        } else {
-            echo "Invalid password.";
-        }
-    } else {
-        echo "No user found.";
+    session_start();
+    require_once("../model/db.php");
+    if(isset($_SESSION["userId"]))
+    {
+        if(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 1)
+    {
+        header("Location:admin/home.php");
+        
     }
-}
+    elseif(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 4)
+    {
+        header("Location:employee/home.php");
+        
+    }elseif(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 3)
+    {
+        header("Location:client/home.php");
+        
+    }
+    else
+        {
+             header("Location:client/home.php");   
+        }
+
+    }
+
+    else
+    {
+
+    }
+     $conn = getConnection();
+
+    // ✅ Check if connection is successful
+    if (!$conn) {
+        die("Database connection failed: " . mysqli_connect_error());
+    } else {
+        echo "Database connected successfully!<br>";
+    }
 ?>
 
-<form method="post" action="">
-    <h2>Login</h2>
-    Email: <input type="email" name="email" required><br>
-    Password: <input type="password" name="password" required><br>
-    <button type="submit">Login</button>
-</form>
+<!doctype html>
+<html>
+    <head></head>
+    <body>
+        <form action="../controller/authController.php" method="POST">
+            <label for="userId">User ID: </label>
+            <input type="text" name="userId"><br>
+            <span name="userIderr" style="color:red;"><?php if(isset($_GET["idErr"])){echo $_GET["idErr"]; } ?></span>
+
+            <label for="pass">Password: </label>
+            <input type="text" name="pass"><br>
+            <span name="passerr" style="color:red;"><?php if(isset($_GET["passErr"])){echo $_GET["passErr"]; } ?></span>
+
+            <input type="submit" name="submit" value="login">
+            <span name="invalidUser" style="color:red;"><?php if(isset($_GET["invalidUser"])){echo $_GET["invalidUser"]; } ?></span>
+            
+        </form>
+    </body>
+</html>
