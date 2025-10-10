@@ -49,6 +49,7 @@
                 session_start();
                 $_SESSION["userId"]=$returnedValue["userId"];
                 $_SESSION["RoleId"]=$returnedValue["RoleId"];
+                $_SESSION["Name"]=$returnedValue["Name"];
 
                 if($returnedValue["RoleId"]==1)
                 {
