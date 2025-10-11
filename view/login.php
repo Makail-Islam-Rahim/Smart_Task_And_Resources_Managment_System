@@ -3,7 +3,7 @@
     require_once("../model/db.php");
     if(isset($_SESSION["userId"]))
     {
-        if(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 1)
+        if(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 2)
     {
         header("Location:admin/home.php");
         
@@ -14,7 +14,7 @@
         
     }elseif(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 3)
     {
-        header("Location:client/home.php");
+        header("Location:manager/home.php");
         
     }
     else

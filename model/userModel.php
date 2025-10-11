@@ -54,4 +54,24 @@ function getReports()
     while($r = mysqli_fetch_assoc($res)) $data[] = $r;
     return $data;
 }
+
+function getUserDataById($userId)
+{
+    $conn = getConnection();
+    if (!$conn) return false;
+
+    $userId = intval($userId);
+    $sql = "SELECT * FROM user WHERE userId = $userId";
+
+    $result = mysqli_query($conn, $sql);
+    if (!$result) return false;
+
+    $user = mysqli_fetch_assoc($result);
+    mysqli_close($conn);
+
+    return $user;
+}
+
+
+
 ?>

@@ -54,7 +54,7 @@
                 $_SESSION["email"]=$returnedValue["Email"];
                 $_SESSION["age"]=$returnedValue["Age"];
 
-                if($returnedValue["RoleId"]==1)
+                if($returnedValue["RoleId"]==2)
                 {
                     
                     header("location:../view/admin/home.php");
@@ -66,7 +66,7 @@
                 }
                 elseif($returnedValue["RoleId"]==3)
                 {
-                    header("location:../view/client/home.php");
+                    header("location:../view/manager/home.php");
                 }
 
                 else

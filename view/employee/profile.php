@@ -1,26 +1,6 @@
 <?php
     session_start();
 
-     if(isset($_SESSION["userId"]))
-    {
-        if(isset($_SESSION["RoleId"])==2)
-        {
-            
-        }
-
-        else
-        {
-            header("Location:../login.php");
-        }
-
-        
-
-    }
-
-    else
-    {
-        header("Location:../login.php");
-    }
     $email=$_SESSION["email"];
     $age=$_SESSION["age"]
  

@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("db.php");
+
+include('../../model/db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
@@ -22,8 +23,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!doctype html>
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
     <body>
+
+        <div class="header" id="myHeader">
+    <div class="side-menu">
+        <ul>
+            <li><?php echo "<a href='home.php'>Home</a>" ?></li>
+            <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
+            <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
+            <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
+            <li>Resources</li>
+            <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
+        </ul>
+    </div>
+
     <form method="post" action="">
     <h2>Register</h2>
     Name: <input type="text" name="name" required><br>

@@ -25,4 +25,10 @@ function fetchReports()
 {
     return getReports();
 }
+
+function fetchUserDataById($userId)
+{
+    return getUserDataById($userId);
+}
+
 ?>
