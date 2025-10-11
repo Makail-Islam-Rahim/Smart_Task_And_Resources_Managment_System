@@ -30,7 +30,7 @@
     }
      $conn = getConnection();
 
-    // ✅ Check if connection is successful
+    
     if (!$conn) {
         die("Database connection failed: " . mysqli_connect_error());
     } else {

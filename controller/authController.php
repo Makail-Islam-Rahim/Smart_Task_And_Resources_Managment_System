@@ -5,6 +5,7 @@
     $hasErr=false;
     $userId="";
     $pass="";
+    $email="";
     if(($_SERVER["REQUEST_METHOD"]=="POST") && isset($_POST["submit"]))
     {
         if(empty($_POST["userId"]))
@@ -50,6 +51,8 @@
                 $_SESSION["userId"]=$returnedValue["userId"];
                 $_SESSION["RoleId"]=$returnedValue["RoleId"];
                 $_SESSION["Name"]=$returnedValue["Name"];
+                $_SESSION["email"]=$returnedValue["Email"];
+                $_SESSION["age"]=$returnedValue["Age"];
 
                 if($returnedValue["RoleId"]==1)
                 {
