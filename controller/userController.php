@@ -31,4 +31,19 @@ function fetchUserDataById($userId)
     return getUserDataById($userId);
 }
 
+function editUser($userId, $name, $email, $roleId, $age, $gender)
+{
+    return updateUser($userId, $name, $email, $roleId, $age, $gender);
+}
+
+function changeUserPassword($userId, $newPassword)
+{
+    return updateUserPassword($userId, $newPassword);
+}
+
+function removeUser($userId)
+{
+    return deleteUser($userId);
+}
+
 ?>

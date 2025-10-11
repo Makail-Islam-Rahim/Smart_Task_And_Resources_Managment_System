@@ -72,6 +72,51 @@ function getUserDataById($userId)
     return $user;
 }
 
+function updateUser($userId, $name, $email, $roleId, $age, $gender)
+{
+    $conn = getConnection();
+    if (!$conn) return false;
 
+    $userId = intval($userId);
+    $name = mysqli_real_escape_string($conn, $name);
+    $email = mysqli_real_escape_string($conn, $email);
+    $gender = mysqli_real_escape_string($conn, $gender);
+
+    $sql = "UPDATE user
+            SET Name='$name', Email='$email', RoleId=$roleId, Age=$age, Gender='$gender'
+            WHERE userId=$userId";
+
+    $res = mysqli_query($conn, $sql);
+    mysqli_close($conn);
+    return $res;
+}
+
+function updateUserPassword($userId, $newPassword)
+{
+    $conn = getConnection();
+    if (!$conn) return false;
+
+    $userId = intval($userId);
+    $hashed = password_hash($newPassword, PASSWORD_DEFAULT);
+
+    $sql = "UPDATE user SET Password='$hashed' WHERE userId=$userId";
+    $res = mysqli_query($conn, $sql);
+
+    mysqli_close($conn);
+    return $res;
+}
+
+function deleteUser($userId)
+{
+    $conn = getConnection();
+    if (!$conn) return false;
+
+    $userId = intval($userId);
+    $sql = "DELETE FROM user WHERE userId=$userId";
+    $res = mysqli_query($conn, $sql);
+
+    mysqli_close($conn);
+    return $res;
+}
 
 ?>

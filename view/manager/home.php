@@ -21,6 +21,10 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
         <ul>
             <li><?php echo "<a href='home.php'>Home</a>" ?></li>
             <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
+            <li><a href="task_management.php">Task Management</a></li>
+            <li><a href="task_progress.php">Task Progress</a></li>
+            <li><a href="resource_requests.php">Resource Requests</a></li>
+
             <li>Resources</li>
             <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>

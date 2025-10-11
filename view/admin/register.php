@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$name', '$email', '$password', '$role', '$age', '$gender')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Registration successful. <a href='login.php'>Login here</a>";
+        echo "Registration successful. <a href='login.php'>Login here</a> ";
     } else {
         echo "Error: " . $conn->error;
     }
