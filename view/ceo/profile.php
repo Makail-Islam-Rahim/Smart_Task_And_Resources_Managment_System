@@ -1,29 +1,23 @@
 <?php
     session_start();
 
-     if(isset($_SESSION["userId"]))
-    {
-        if(isset($_SESSION["RoleId"])==2)
-        {
-            
-        }
+    require_once("../../controller/userController.php");
 
-        else
-        {
-            header("Location:../login.php");
-        }
-
-        
-
+    if (!isset($_SESSION["userId"])) {
+        header("Location: ../login.php");
+        exit;
     }
 
-    else
-    {
-        header("Location:../login.php");
+    $userId = $_SESSION["userId"];
+    $user = fetchUserDataById($userId);
+
+    if (!$user) {
+        echo "<h3>User not found.</h3>";
+        exit;
     }
+    
     $email=$_SESSION["email"];
     $age=$_SESSION["age"]
- 
 ?>
 
 
@@ -39,15 +33,24 @@
     <div class="side-menu">
         <ul>
             <li><?php echo "<a href='home.php'>Home</a>" ?></li>
-            <li><?php echo "<a href='profile.php'>Home</a>" ?></li>    
-            <li>Resources</li>
+            <li><?php echo "<a href='profile.php'>Profile</a>" ?></li>    
+             <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
+            <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
             <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>
     </div>
 
     </div>
 
-    <h2>User Details</h2>
+    <h2>Your Information</h2>
+    <table>
+        <tr><th>User ID</th><td><?= htmlspecialchars($user['userId']) ?></td></tr>
+        <tr><th>Name</th><td><?= htmlspecialchars($user['Name']) ?></td></tr>
+        <tr><th>Email</th><td><?= htmlspecialchars($user['Email']) ?></td></tr>
+        <tr><th>Role ID</th><td><?= htmlspecialchars($user['RoleId']) ?></td></tr>
+        <tr><th>Age</th><td><?= htmlspecialchars($user['Age']) ?></td></tr>
+        <tr><th>Gender</th><td><?= htmlspecialchars($user['Gender']) ?></td></tr>
+    </table>
     
     
 

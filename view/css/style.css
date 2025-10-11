@@ -52,6 +52,21 @@ body {
     background-color: #1abc9c;
 }
 
+table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin-top: 20px !important;
+}
+
+th, td {
+  border: 1px solid #ccc !important;
+  padding: 8px 12px !important;
+}
+
+th {
+  background: #f4f4f4 !important;
+}
+
 
 .content {
     padding: 40px;

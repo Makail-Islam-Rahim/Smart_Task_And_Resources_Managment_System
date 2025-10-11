@@ -21,7 +21,7 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
         <ul>
             <li><?php echo "<a href='home.php'>Home</a>" ?></li>
             <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
-            <li>Resources</li>
+            <li><?php echo "<a href='resource.php'>Resources</a>"?></li>
             <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>
     </div>

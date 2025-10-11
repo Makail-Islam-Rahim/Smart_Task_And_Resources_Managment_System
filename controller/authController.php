@@ -68,10 +68,14 @@
                 {
                     header("location:../view/manager/home.php");
                 }
+                elseif($returnedValue["RoleId"]==1)
+                {
+                    header("location:../view/ceo/home.php");
+                }
 
                 else
                 {
-                    header("location:../view/client/home.php");
+                    header("location:../index.php");
                 }
                 
             }
