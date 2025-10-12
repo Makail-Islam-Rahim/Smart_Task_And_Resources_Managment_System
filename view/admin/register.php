@@ -1,9 +1,9 @@
 <?php
 session_start();
-
-include('../../model/db.php');
-
-
+require_once('../../model/db.php');
+ 
+$conn = getConnection();
+ 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -11,14 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $_POST['role'];
     $age = $_POST['age'];
     $gender = $_POST['gender'];
-
-    $sql = "INSERT INTO user (name, email, password, role, age, gender)
+ 
+    $sql = "INSERT INTO user (Name, Email, Password, RoleId, Age, Gender)
             VALUES ('$name', '$email', '$password', '$role', '$age', '$gender')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Registration successful. <a href='login.php'>Login here</a> ";
+ 
+    if (mysqli_query($conn, $sql)) {
+        echo "✅ Registration successful. <a href='../login.php'>Login here</a>";
     } else {
-        echo "Error: " . $conn->error;
+        echo "❌ Error: " . mysqli_error($conn);
     }
 }
 ?>
@@ -28,41 +28,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
-
-        <div class="header" id="myHeader">
-    <div class="side-menu">
-        <ul>
-            <li><?php echo "<a href='home.php'>Home</a>" ?></li>
-            <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
-            <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
-            <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
-            <li>Resources</li>
-            <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
-        </ul>
+ 
+    <div class="header" id="myHeader">
+        <div class="side-menu">
+            <ul>
+                <li><a href='home.php'>Home</a></li>
+                <li><a href='profile.php'>Profile</a></li>
+                <li><a href='accounts.php'>Accounts</a></li>
+                <li><a href='analytics.php'>Analytics</a></li>
+                <li><a href='../logout.php'>Logout</a></li>
+            </ul>
+        </div>
+ 
+        <form method="post" action="">
+            <h2>Register</h2>
+            Name: <input type="text" name="name" required><br>
+            Email: <input type="email" name="email" required><br>
+            Password: <input type="password" name="password" required><br>
+            Role ID:
+            <select name="role" required>
+                <option value="1">CEO</option>
+                <option value="2">Admin</option>
+                <option value="3">Manager</option>
+                <option value="4">Employee</option>
+            </select><br>
+            Age: <input type="number" name="age"><br>
+            Gender:
+            <select name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br>
+            <button type="submit">Register</button>
+        </form>
     </div>
-
-    <form method="post" action="">
-    <h2>Register</h2>
-    Name: <input type="text" name="name" required><br>
-    Email: <input type="email" name="email" required><br>
-    Password: <input type="password" name="password" required><br>
-    Role:
-    <select name="role" required>
-        <option value="CEO">CEO</option>
-        <option value="Admin">Admin</option>
-        <option value="Manager">Manager</option>
-        <option value="Employee">Employee</option>
-        <option value="Monitor">Monitor</option>
-    </select><br>
-    Age: <input type="number" name="age"><br>
-    Gender:
-    <select name="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-    </select><br>
-    <button type="submit">Register</button>
-    </form>
-
+ 
     </body>
 </html>
+ 

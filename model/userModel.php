@@ -10,6 +10,7 @@ function validateUsers($id, $pass)
         return $row;
 }
 
+ 
 
 
 function getAllUsers()

@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $age = intval($_POST["age"]);
         $gender = $_POST["gender"];
         if (editUser($userId, $name, $email, $role, $age, $gender)) {
-            $msg = "✅ User updated successfully!";
+            $msg = "User updated successfully!";
             $user = fetchUserDataById($userId); // refresh data
         } else {
             $msg = "Failed to update user.";
@@ -43,18 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (changeUserPassword($userId, $newPass)) {
             $msg = "🔑 Password updated successfully!";
         } else {
-            $msg = "❌ Failed to update password.";
+            $msg = "❌Failed to update password.";
         }
     }
 
-    if (isset($_POST["delete_user"])) {
-        if (removeUser($userId)) {
-            header("Location: accounts.php?deleted=1");
-            exit;
-        } else {
-            $msg = "❌ Failed to delete user.";
-        }
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -78,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
 
 <h1>Manage User #<?= htmlspecialchars($user['userId']) ?></h1>
-<a class="back" href="accounts.php">← Back to Accounts</a>
+<a class="back" href="manage_user.php">← Back to Accounts</a>
 
 <?php if ($msg): ?>
     <p class="msg"><?= htmlspecialchars($msg) ?></p>

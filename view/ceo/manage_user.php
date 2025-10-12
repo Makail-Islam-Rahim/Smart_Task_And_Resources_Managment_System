@@ -8,6 +8,7 @@ if (!isset($_SESSION["userId"]) || $_SESSION["RoleId"] != 1) {
 }
 
 $users = fetchAllUsers();
+
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +55,7 @@ $users = fetchAllUsers();
         <th>Role</th>
         <th>Age</th>
         <th>Gender</th>
+        <th>Action</th>
     </tr>
 
     <?php foreach ($users as $u): ?>
@@ -64,9 +66,43 @@ $users = fetchAllUsers();
             <td><?= htmlspecialchars($u['RoleId']) ?></td>
             <td><?= htmlspecialchars($u['Age']) ?></td>
             <td><?= htmlspecialchars($u['Gender']) ?></td>
+            <td><a class="button" href="ceo_view_user.php?id=<?= $u['userId'] ?>">View</a>
+            <form action="../../controller/authController.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="userId" value="<?= $u['userId'] ?>">
+                    <button type="submit" name="delete" value="delete">Delete</button>
+                </form>
+        </td>
         </tr>
     <?php endforeach; ?>
 </table>
+
+<h2>Add New User</h2>
+<form action="../../controller/authController.php" method="post">
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>Role:</label><br>
+    <select name="roleId" required>
+        <option value="3">Admin</option>
+    </select><br><br>
+
+    <label>Age:</label><br>
+    <input type="number" name="age" min="18" required><br><br>
+
+    <label>Gender:</label><br>
+    <select name="gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select><br><br>
+
+    <button type="submit" name="add_user">Add Admin</button>
+</form>
 
 </body>
 </html>

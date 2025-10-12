@@ -1,5 +1,7 @@
 <?php
     require_once("userController.php");
+    session_start();
+    require_once("../model/db.php");
     $IdErr="";
     $passErr="";
     $hasErr=false;
@@ -47,7 +49,7 @@
 
             else
             {
-                session_start();
+                
                 $_SESSION["userId"]=$returnedValue["userId"];
                 $_SESSION["RoleId"]=$returnedValue["RoleId"];
                 $_SESSION["Name"]=$returnedValue["Name"];
@@ -81,23 +83,55 @@
             }
         }
     }
+
+        if(isset($_SESSION["userId"]))
+    {
+        if(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 1)
+    {
+        header("Location:ceo/manage_user.php");
+        
+    }
+    
+    else
+        {
+             header("Location:client/home.php");   
+        }
+
+    }
+
+    else
+    {
+
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
         $userId = $_POST["userId"];
         $result = removeUser($userId);
         if($result)
         {
-          switch ($_SESSION["RoleId"]) {
-            case 1:
-                header("Location: ../view/ceo/accounts.php");
-                break;
-            case 2:
-                header("Location: ../view/admin/home.php");
-                break;
-            default:
-                header("Location: ../view/admin/home.php");
+                 if (isset($_SESSION["RoleId"])) {
+            switch ($_SESSION["RoleId"]) {
+                case 1: // CEO
+                    header("Location: ../view/ceo/manage_user.php");
+                    exit;
+                case 2: // Admin
+                    header("Location: ../view/admin/accounts.php");
+                    exit;
+                case 3: // Manager
+                    header("Location: ../view/manager/accounts.php");
+                    exit;
+                case 4: // Employee (if needed)
+                    header("Location: ../view/employee/accounts.php");
+                    exit;
+                default:
+                    header("Location: ../index.php");
+                    exit;
+            }
+        } else {
+            header("Location: ../index.php");
+            exit;
         }
-        exit;
-        }
+    }
         else
         {
             echo "Delete failed";
