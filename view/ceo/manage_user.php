@@ -9,6 +9,7 @@ if (!isset($_SESSION["userId"]) || $_SESSION["RoleId"] != 1) {
 
 $users = fetchAllUsers();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -16,22 +17,8 @@ $users = fetchAllUsers();
 <head>
     <meta charset="utf-8">
     <title>All User Accounts</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        .header { background: #e3e3e3; padding: 15px; border-radius: 10px; }
-        .side-menu ul { list-style: none; padding: 0; }
-        .side-menu li { margin: 8px 0; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 8px 12px; }
-        th { background: #f4f4f4; }
-        .add_user { background: #dc3545; color: white; }
-        a.button {
-            background: #007BFF; color: white; padding: 6px 10px;
-            border-radius: 5px; text-decoration: none;
-        }
-        a.button:hover { background: #0056b3; }
-    </style>
+   <link rel="stylesheet" href="../css/ceo_user_manage.css">
+    
 </head>
 <body>
 
@@ -39,9 +26,12 @@ $users = fetchAllUsers();
     <h1>Welcome, CEO</h1>
     <div class="side-menu">
         <ul>
-            <li><a href="home.php">Home</a></li>
-            <li><a href="accounts.php">Accounts</a></li>
-            <li><a href="../logout.php">Logout</a></li>
+           <li><?php echo "<a href='home.php'>Home</a>" ?></li>
+            <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
+            <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
+            <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
+            <li><?php echo "<a href='performance_report.php'>Performance</a>" ?></li>
+            <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>
     </div>
 </div>
@@ -67,16 +57,20 @@ $users = fetchAllUsers();
             <td><?= htmlspecialchars($u['Age']) ?></td>
             <td><?= htmlspecialchars($u['Gender']) ?></td>
             <td><a class="button" href="ceo_view_user.php?id=<?= $u['userId'] ?>">View</a>
-            <form action="../../controller/authController.php" method="POST" style="display:inline;">
-                    <input type="hidden" name="userId" value="<?= $u['userId'] ?>">
-                    <button type="submit" name="delete" value="delete">Delete</button>
-                </form>
         </td>
         </tr>
     <?php endforeach; ?>
 </table>
 
 <h2>Add New User</h2>
+<?php
+if(isset($_GET['success'])){
+    echo "<p style='color:green'>User added successfully!</p>";
+}
+if(isset($_GET['error']) && $_GET['error'] == 'email'){
+    echo "<p style='color:red'>This email is already registered.</p>";
+}
+?>
 <form action="../../controller/authController.php" method="post">
     <label>Name:</label><br>
     <input type="text" name="name" required><br><br>
@@ -102,7 +96,12 @@ $users = fetchAllUsers();
     </select><br><br>
 
     <button type="submit" name="add_user">Add Admin</button>
+    <script>
+    var existingEmails = [
+        <?php foreach($users as $u) { echo "'". $u['Email'] ."',"; } ?>
+    ];
+</script>
 </form>
-
+<script src="../js/validateAddUser.js"></script>
 </body>
 </html>

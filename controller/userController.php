@@ -45,9 +45,37 @@ function removeUser($userId)
 {
     return deleteUser($userId);
 }
-function addUser($name, $email, $password, $roleId, $age, $gender)
+
+function getUserRoleCounts()
 {
-    return insertUser($name, $email, $password, $roleId, $age, $gender);
+    $users = getAllUsers();
+    $counts = [
+        "Admin" => 0,
+        "Manager" => 0,
+        "Employee" => 0,
+        "Total" => 0
+    ];
+
+    foreach ($users as $user) {
+        switch ($user['RoleId']) {
+            case 2:
+                $counts["Manager"]++;
+                break;
+            case 3:
+                $counts["Admin"]++;
+                break;
+            case 4:
+                $counts["Employee"]++;
+                break;
+        }
+        $counts["Total"]++;
+    }
+    return $counts;
 }
+function addUser($name, $email, $password, $roleId, $age, $gender){
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    return insertUser($name, $email, $passwordHash, $roleId, $age, $gender);
+}
+
 
 ?>

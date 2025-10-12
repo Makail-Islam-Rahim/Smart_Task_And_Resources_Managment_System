@@ -1,7 +1,6 @@
 <?php
     require_once("userController.php");
-    session_start();
-    require_once("../model/db.php");
+    
     $IdErr="";
     $passErr="";
     $hasErr=false;
@@ -49,7 +48,7 @@
 
             else
             {
-                
+                session_start();
                 $_SESSION["userId"]=$returnedValue["userId"];
                 $_SESSION["RoleId"]=$returnedValue["RoleId"];
                 $_SESSION["Name"]=$returnedValue["Name"];
@@ -84,20 +83,6 @@
         }
     }
 
-        if(isset($_SESSION["userId"]))
-    {
-        if(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 1)
-    {
-        header("Location:ceo/manage_user.php");
-        
-    }
-    
-    else
-        {
-             header("Location:client/home.php");   
-        }
-
-    }
 
     else
     {
@@ -141,22 +126,22 @@
     
 
 
-    if (isset($_POST["add_user"])) {
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $roleId = $_POST["roleId"];
-        $age = $_POST["age"];
-        $gender = $_POST["gender"];
+    if(isset($_POST['add_user'])){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $roleId = $_POST['roleId'];
+    $age = $_POST['age'];
+    $gender = $_POST['gender'];
 
-        $result = addUser($name, $email, $password, $roleId, $age, $gender);
-
-        if ($result) {
-           header("Location: ../view/ceo/accounts.php");
-        } else {
-            echo "<script>alert('Failed to add user!'); window.location.href='../view/admin/account.php';</script>";
-        }
+    if(addUser($name, $email, $password, $roleId, $age, $gender)){
+        header("Location: ../view/ceo/manage_user.php?success=1");
+        exit;
+    } else {
+        header("Location: ../view/ceo/manage_user.php?error=duplicate");
+        exit;
     }
+}
 ?>
 
 

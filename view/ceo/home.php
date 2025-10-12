@@ -24,7 +24,7 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
             <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
             <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
             <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
-            <li><?php echo "<a href='performance_report.php'>Rerformance</a>" ?></li>
+            <li><?php echo "<a href='performance_report.php'>Performance</a>" ?></li>
             <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>
     </div>
@@ -71,7 +71,7 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
             <div class="card">
                 <h2>Logout</h2>
                 <p>Sign out of your CEO account.</p>
-                <a href="../../logout.php" class="btn logout-btn">Logout</a>
+                <a href="../logout.php" class="btn logout-btn">Logout</a>
             </div>
         </div>
     </div>

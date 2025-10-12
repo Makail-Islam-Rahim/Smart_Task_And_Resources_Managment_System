@@ -8,6 +8,8 @@ if (!isset($_SESSION["userId"]) || $_SESSION["RoleId"] != 1) {
 }
 
 $users = fetchAllUsers();
+$counts = getUserRoleCounts();
+$name=$_SESSION["Name"]
 ?>
 
 <!DOCTYPE html>
@@ -15,35 +17,48 @@ $users = fetchAllUsers();
 <head>
     <meta charset="utf-8">
     <title>All User Accounts</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        .header { background: #e3e3e3; padding: 15px; border-radius: 10px; }
-        .side-menu ul { list-style: none; padding: 0; }
-        .side-menu li { margin: 8px 0; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 8px 12px; }
-        th { background: #f4f4f4; }
-        .add_user { background: #dc3545; color: white; }
-        a.button {
-            background: #007BFF; color: white; padding: 6px 10px;
-            border-radius: 5px; text-decoration: none;
-        }
-        a.button:hover { background: #0056b3; }
-    </style>
+    <link rel="stylesheet" href="../css/ceo_accounts_style.css">
 </head>
 <body>
 
-<div class="header" id="myHeader">
-    <h1>Welcome, CEO</h1>
+ <div class="header" id="myHeader">
+    <?php  echo "<h1>Welcome ".$name."</h1>" ?>
     <div class="side-menu">
         <ul>
-            <li><a href="home.php">Home</a></li>
-            <li><a href="accounts.php">Accounts</a></li>
-            <li><a href="../logout.php">Logout</a></li>
+            <li><?php echo "<a href='home.php'>Home</a>" ?></li>
+            <li><?php echo "<a href='profile.php'>Profile</a>" ?></li>    
+             <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
+            <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
+            <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>
     </div>
-</div>
+    </div>
+
+
+    <div class="container">
+        <h1>User Role Summary</h1>
+
+        <div class="cards">
+            <div class="card">
+                <h2>Total Admins</h2>
+                <p><?= $counts['Admin'] ?></p>
+            </div>
+            <div class="card">
+                <h2>Total Managers</h2>
+                <p><?= $counts['Manager'] ?></p>
+            </div>
+            <div class="card">
+                <h2>Total Employees</h2>
+                <p><?= $counts['Employee'] ?></p>
+            </div>
+            <div class="card">
+                <h2>Total Users</h2>
+                <p><?= $counts['Total'] ?></p>
+            </div>
+        </div>
+
+    </div>
+
 
 <h2>All Registered Users</h2>
 <table>

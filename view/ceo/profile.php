@@ -25,7 +25,7 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/ceo_profile_style.css">
     </head>
     <body>
     <div class="header" id="myHeader">

@@ -3,11 +3,18 @@ require_once('db.php');
 
 function validateUsers($id, $pass)
 {
-       $conn=getConnection();
-        $sql="SELECT * FROM user WHERE userID='$id' And Password='$pass'";
-        $result=mysqli_query($conn, $sql);
-        $row=mysqli_fetch_assoc($result);
+    $conn = getConnection();
+    $id = mysqli_real_escape_string($conn, $id);
+ 
+    $sql = "SELECT * FROM user WHERE userId='$id' OR Email='$id'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+ 
+    if ($row && password_verify($pass, $row['Password'])) {
         return $row;
+    } else {
+        return false;
+    }
 }
 
  
@@ -121,18 +128,28 @@ function deleteUser($userId)
     mysqli_close($conn);
     return $res;
 }
-function insertUser($name, $email, $password, $roleId, $age, $gender)
-{
+function emailExists($email){
     $conn = getConnection();
-    if (!$conn) return false;
-
-    $sql = "INSERT INTO user (Name, Email, Password, RoleId, Age, Gender)
-            VALUES ('$name', '$email', '$password', '$roleId', '$age', '$gender')";
-
-    $result = mysqli_query($conn, $sql);
+    $query = "SELECT * FROM user WHERE Email='$email'";
+    $result = mysqli_query($conn, $query);
+    $exists = false;
+    if(mysqli_num_rows($result) > 0){
+        $exists = true;
+    }
     mysqli_close($conn);
-
-    return $result;
+    return $exists;
 }
 
+function insertUser($name, $email, $password, $roleId, $age, $gender){
+    $conn = getConnection();
+    if(emailExists($email)){
+        return false;
+    }
+    $hashed = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO user (Name, Email, Password, RoleId, Age, Gender) 
+            VALUES ('$name', '$email', '$hashed', '$roleId', '$age', '$gender')";
+    $result = mysqli_query($conn, $sql);
+    mysqli_close($conn);
+    return $result;
+}
 ?>

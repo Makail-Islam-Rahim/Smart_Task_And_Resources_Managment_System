@@ -16,7 +16,8 @@
     }
     
     $email=$_SESSION["email"];
-    $age=$_SESSION["age"]
+    $age=$_SESSION["age"];
+    $name=$_SESSION["Name"];
 ?>
 
 
@@ -24,11 +25,11 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/ceo_profile_style.css">
     </head>
     <body>
     <div class="header" id="myHeader">
-    <?php  echo "<h1>Welcome ".$age."</h1>" ?>
+    <?php  echo "<h1>Welcome ".$name."</h1>" ?>
     <div class="side-menu">
         <ul>
             <li><?php echo "<a href='home.php'>Home</a>" ?></li>

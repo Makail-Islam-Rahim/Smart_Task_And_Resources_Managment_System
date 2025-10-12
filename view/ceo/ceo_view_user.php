@@ -2,13 +2,11 @@
 session_start();
 require_once("../../controller/userController.php");
 
-//Only admins can access
 if (!isset($_SESSION["userId"]) || $_SESSION["RoleId"] != 1) {
     header("Location: ../login.php");
     exit;
 }
 
-//Get user info
 if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
     echo "<p>Invalid user ID.</p>";
     exit;
@@ -21,7 +19,6 @@ if (!$user) {
     exit;
 }
 
-//Handle CRUD form submissions
 $msg = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["update_user"])) {
@@ -32,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $gender = $_POST["gender"];
         if (editUser($userId, $name, $email, $role, $age, $gender)) {
             $msg = "User updated successfully!";
-            $user = fetchUserDataById($userId); // refresh data
+            $user = fetchUserDataById($userId);
         } else {
             $msg = "Failed to update user.";
         }
@@ -46,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $msg = "❌Failed to update password.";
         }
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -54,18 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
 <meta charset="UTF-8">
 <title>Manage User</title>
-<style>
-    body { font-family: Arial; margin: 40px; }
-    form { margin-top: 20px; }
-    label { display: inline-block; width: 120px; margin-bottom: 6px; }
-    input, select { padding: 5px; margin-bottom: 8px; width: 220px; }
-    button { padding: 6px 12px; margin-right: 8px; border: none; border-radius: 5px; cursor: pointer; }
-    .update { background: #007BFF; color: white; }
-    .pass { background: #17a2b8; color: white; }
-    .delete { background: #dc3545; color: white; }
-    a.back { text-decoration: none; background: #6c757d; color: white; padding: 6px 10px; border-radius: 5px; }
-    .msg { margin: 10px 0; color: green; font-weight: bold; }
-</style>
+ <link rel="stylesheet" href="../css/ceo_view_user_style.css">
 </head>
 <body>
 
@@ -107,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <h2>Delete User</h2>
 <form action="../../controller/authController.php" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
-    <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+    <input type="hidden" name="userId" value="<?= $userId; ?>">
     <button type="submit" name="delete" class="delete">Delete User</button>
 </form>
 
