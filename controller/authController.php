@@ -81,6 +81,50 @@
             }
         }
     }
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
+        $userId = $_POST["userId"];
+        $result = removeUser($userId);
+        if($result)
+        {
+          switch ($_SESSION["RoleId"]) {
+            case 1:
+                header("Location: ../view/ceo/accounts.php");
+                break;
+            case 2:
+                header("Location: ../view/admin/home.php");
+                break;
+            default:
+                header("Location: ../view/admin/home.php");
+        }
+        exit;
+        }
+        else
+        {
+            echo "Delete failed";
+        }
+    }
+
+    
 
 
+    if (isset($_POST["add_user"])) {
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $roleId = $_POST["roleId"];
+        $age = $_POST["age"];
+        $gender = $_POST["gender"];
+
+        $result = addUser($name, $email, $password, $roleId, $age, $gender);
+
+        if ($result) {
+           header("Location: ../view/ceo/accounts.php");
+        } else {
+            echo "<script>alert('Failed to add user!'); window.location.href='../view/admin/account.php';</script>";
+        }
+    }
 ?>
+
+
+
+

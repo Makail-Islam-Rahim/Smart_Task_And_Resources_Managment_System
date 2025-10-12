@@ -17,6 +17,11 @@
         header("Location:manager/home.php");
         
     }
+    elseif(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 1)
+    {
+        header("Location:ceo/home.php");
+        
+    }
     else
         {
              header("Location:client/home.php");   

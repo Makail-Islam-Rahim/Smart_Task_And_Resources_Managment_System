@@ -1,23 +1,20 @@
 <?php
-
-
-include('../model/db.php'); // ✅ connect to DB
-    session_start();
-    $conn=getConnection();
+    require_once(__DIR__ . "/../model/db.php");
+    session_start(); 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['request_resource'])) {
 
 
     $resource_name = $_POST['resource_name'];
     $resource_amount = $_POST['resource_amount'];
-    $request_by = $_SESSION['userId'];  // ✅ from session
+    $request_by = $_SESSION['userId']; 
     $status = 'pending';
 
-    // find manager or admin (RoleId = 2)
+    
     $result = mysqli_query($conn, "SELECT userId FROM user WHERE RoleId = 2 LIMIT 1");
     $row = mysqli_fetch_assoc($result);
     $request_to = $row['userId'];
-
-    // insert request
+     $conn=getConnection();
+  
     $sql = "INSERT INTO resource (resource_name, status, resource_amount, request_by, request_to)
             VALUES ('$resource_name', '$status', '$resource_amount', '$request_by', '$request_to')";
 

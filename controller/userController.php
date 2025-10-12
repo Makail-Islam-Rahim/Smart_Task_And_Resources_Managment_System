@@ -45,5 +45,9 @@ function removeUser($userId)
 {
     return deleteUser($userId);
 }
+function addUser($name, $email, $password, $roleId, $age, $gender)
+{
+    return insertUser($name, $email, $password, $roleId, $age, $gender);
+}
 
 ?>

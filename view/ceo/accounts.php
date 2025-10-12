@@ -24,6 +24,7 @@ $users = fetchAllUsers();
         table { border-collapse: collapse; width: 100%; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 8px 12px; }
         th { background: #f4f4f4; }
+        .add_user { background: #dc3545; color: white; }
         a.button {
             background: #007BFF; color: white; padding: 6px 10px;
             border-radius: 5px; text-decoration: none;
@@ -64,10 +65,38 @@ $users = fetchAllUsers();
             <td><?= htmlspecialchars($u['RoleId']) ?></td>
             <td><?= htmlspecialchars($u['Age']) ?></td>
             <td><?= htmlspecialchars($u['Gender']) ?></td>
-            <td><a class="button" href="view_user.php?id=<?= $u['userId'] ?>">View</a></td>
+            <td><a class="button" href="ceo_view_user.php?id=<?= $u['userId'] ?>">View</a></td>
         </tr>
     <?php endforeach; ?>
 </table>
+
+<h2>Add New User</h2>
+<form action="../../controller/authController.php" method="post">
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>Role:</label><br>
+    <select name="roleId" required>
+        <option value="3">Admin</option>
+    </select><br><br>
+
+    <label>Age:</label><br>
+    <input type="number" name="age" min="18" required><br><br>
+
+    <label>Gender:</label><br>
+    <select name="gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select><br><br>
+
+    <button type="submit" name="add_user">Add Admin</button>
+</form>
 
 </body>
 </html>

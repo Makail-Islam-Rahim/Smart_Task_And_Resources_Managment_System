@@ -10,6 +10,8 @@ function validateUsers($id, $pass)
         return $row;
 }
 
+
+
 function getAllUsers()
 {
     $conn = getConnection();
@@ -117,6 +119,19 @@ function deleteUser($userId)
 
     mysqli_close($conn);
     return $res;
+}
+function insertUser($name, $email, $password, $roleId, $age, $gender)
+{
+    $conn = getConnection();
+    if (!$conn) return false;
+
+    $sql = "INSERT INTO user (Name, Email, Password, RoleId, Age, Gender)
+            VALUES ('$name', '$email', '$password', '$roleId', '$age', '$gender')";
+
+    $result = mysqli_query($conn, $sql);
+    mysqli_close($conn);
+
+    return $result;
 }
 
 ?>

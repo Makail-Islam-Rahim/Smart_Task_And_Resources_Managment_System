@@ -1,34 +1,7 @@
 <?php
 
-session_start();
-    include ('../../model/db.php');
+    include ('../../controller/resourceController.php');
     
- 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['request_resource'])) {
-        $request_id=$_POST['request_id'];
-        $resource_name=$_POST['resource_name'];
-        $status=$_POST['status'];
-        $resource_amount=$_POST['resource_amount'];
-        $request_by=$_POST['request_by'];
-        $request_to=$_POST['request_to'];
-        $request_by = $_SESSION['userId'];
-        $result = mysqli_query($conn, "SELECT userId FROM user WHERE RoleId = 2 LIMIT 1");
-        $row = mysqli_fetch_assoc($result);
-        $request_to = $row['userId'];
-        $status = 'pending';
-
-    $sql = "INSERT INTO resource (request_id, resource_name,status, resource_amount,request_by, request_to)
-            VALUES ('$request_id', '$resource_name', '$status', '$resource_amount', '$request_by', '$request_to')";
-
-    if ($conn->query($sql) === TRUE) {
-       echo "Resource request submitted successfully! ";
-
-        exit();
-    } else {
-        echo "Error: " . $conn->error;
-    }
-}
-
 
 ?>
 <!doctype html>

@@ -3,6 +3,7 @@ session_start();
 
 include('../../model/db.php');
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
