@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // employees listing view
-$employees = mysqli_query($conn, "SELECT userId, Name FROM user WHERE RoleId = 4");
+/* removed SQL: moved to model function get_task_management_employees() */
 
 // get all tasks assigned by any particular manager
 $sql = "SELECT t.taskID, t.task_type, t.status, t.deadline, t.completion_rate, u.Name AS employee
@@ -43,18 +43,15 @@ $tasks = mysqli_query($conn, $sql);
 <html>
 <head>
     <title>Task Management</title>
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        form { margin-bottom: 30px; }
-        label { display: block; margin-top: 10px; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 8px; }
-        th { background: #f4f4f4; }
-    </style>
+    
+<link rel="stylesheet" href="../css/managercss/common.css">
+<link rel="stylesheet" href="../css/managercss/task_management.css">
 </head>
 <body>
 <h1>Task Management</h1>
-<a href="home.php">← Back to Home</a>
+	        <li><?php echo "<a href='home.php'>Home</a>" ?></li>
+            <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
+            <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
 
 <h2>Assign New Task</h2>
 <form method="POST">
@@ -66,9 +63,10 @@ $tasks = mysqli_query($conn, $sql);
 
     <label>Assign To:</label>
     <select name="assigned_to" required>
-        <?php while ($emp = mysqli_fetch_assoc($employees)): ?>
-            <option value="<?= $emp['userId'] ?>"><?= htmlspecialchars($emp['Name']) ?></option>
-        <?php endwhile; ?>
+        <?php foreach ($employees as $item): ?>
+?>
+            <option value="<?= $item['userId'] ?>"><?= htmlspecialchars($item['Name']) ?></option>
+        <?php endforeach; ?> ?>
     </select><br><br>
 
     <button type="submit">Assign Task</button>

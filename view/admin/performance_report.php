@@ -72,26 +72,12 @@ $reports = mysqli_query($conn, $sql);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="../css/admincss/common.css">
+<link rel="stylesheet" href="../css/admincss/performance_report.css">
+
     <meta charset="UTF-8">
     <title>Performance Reports</title>
-    <style>
-        body { font-family: Arial; margin: 40px; background: #f9f9f9; }
-        .header { background: #222; color: white; padding: 15px; border-radius: 10px; }
-        .header a { color: white; text-decoration: none; margin-right: 15px; }
-        .section { background: #fff; padding: 20px; margin-top: 20px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-        table { border-collapse: collapse; width: 100%; margin-top: 15px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background: #f4f4f4; }
-        button, .btn { padding: 8px 12px; border: none; border-radius: 5px; text-decoration: none; color: #fff; cursor: pointer; }
-        .generate { background: #007BFF; }
-        .edit { background: #ffc107; color: #000; }
-        .delete { background: #dc3545; }
-        .btn:hover { opacity: 0.85; }
-        .message { color: green; font-weight: bold; margin-bottom: 15px; }
-        .progress-bar { height: 20px; background: #ddd; border-radius: 10px; overflow: hidden; }
-        .progress { height: 20px; background: #28a745; text-align: center; color: white; font-size: 12px; }
-        form.inline { display: inline; }
-    </style>
+    
 </head>
 <body>
 

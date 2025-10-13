@@ -13,7 +13,9 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
 <html>
     <head>
         <link rel="stylesheet" href="../css/style.css">
-    </head>
+    <link rel="stylesheet" href="../css/managercss/common.css">
+<link rel="stylesheet" href="../css/managercss/home.css">
+</head>
     <body>
     <div class="header" id="myHeader">
     <?php  echo "<h1>Welcome ".$_SESSION["Name"]."</h1>" ?>
@@ -24,8 +26,6 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
             <li><a href="task_management.php">Task Management</a></li>
             <li><a href="task_progress.php">Task Progress</a></li>
             <li><a href="resource_requests.php">Resource Requests</a></li>
-
-            <li>Resources</li>
             <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>
     </div>

@@ -38,23 +38,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["change_password"])) {
         $newPass = $_POST["new_password"];
         if (changeUserPassword($userId, $newPass)) {
-            $msg = "🔑 Password updated successfully!";
+            $msg = "Password updated successfully!";
         } else {
-            $msg = "❌Failed to update password.";
+            $msg = "Failed to update password.";
         }
     }
 }
+$name=$_SESSION["Name"];
 ?>
 <!DOCTYPE html>
-<html lang="en">
 <head>
-<meta charset="UTF-8">
 <title>Manage User</title>
  <link rel="stylesheet" href="../css/ceo_view_user_style.css">
 </head>
 <body>
 
-<h1>Manage User #<?= htmlspecialchars($user['userId']) ?></h1>
+<?php  echo "<h1>Welcome ".$name."</h1>" ?>
 <a class="back" href="manage_user.php">← Back to Accounts</a>
 
 <?php if ($msg): ?>

@@ -12,6 +12,9 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
 <!doctype html>
 <html>
     <head>
+<link rel="stylesheet" href="../css/admincss/common.css">
+<link rel="stylesheet" href="../css/admincss/home.css">
+
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>

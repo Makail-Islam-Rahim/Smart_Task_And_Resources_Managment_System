@@ -19,7 +19,8 @@ $pendingRequests = getUserRequestsCount($userId, 'pending');
 </head>
 <body>
 <div class="header">
-    <h1>Welcome, <?php echo htmlspecialchars($userName); ?></h1>
+<h1>Welcome <?= $_SESSION['Name'] ?></h1>
+
     <div class="side-menu">
         <ul>
             <li><a href="home.php">Home</a></li>

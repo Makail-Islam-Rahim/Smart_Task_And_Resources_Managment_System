@@ -6,7 +6,7 @@ session_start();
 }
 require_once('../../controller/userController.php');
 $myTasks = fetchUserTasks($_SESSION['userId']);
-
+$name=$_SESSION["Name"];
 ?>
 
 <!doctype html>
@@ -17,14 +17,10 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
     </head>
     <body>
     <div class="header" id="myHeader">
-    <?php  echo "<h1>Welcome ".$_SESSION["Name"]."</h1>" ?>
+    <?php  echo "<h1>Welcome ".$name."</h1>" ?>
     <div class="side-menu">
         <ul>
             <li><?php echo "<a href='home.php'>Home</a>" ?></li>
-            <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
-            <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
-            <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
-            <li><?php echo "<a href='performance_report.php'>Performance</a>" ?></li>
             <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>
     </div>
@@ -34,48 +30,35 @@ $myTasks = fetchUserTasks($_SESSION['userId']);
         <div class="cards">
             <div class="card">
                 <h2>Accounts</h2>
-                <p>Manage company accounts and financial summaries.</p>
+                <p>See All Active Accounts</p>
                 <a href="accounts.php" class="btn">View Accounts</a>
             </div>
 
             <div class="card">
                 <h2>Profile</h2>
-                <p>Update your personal information and settings.</p>
+                <p>Your personal information</p>
                 <a href="profile.php" class="btn">View Profile</a>
             </div>
 
             <div class="card">
                 <h2>Performance Report</h2>
-                <p>Analyze performance and track department progress.</p>
+                <p>All Performance</p>
                 <a href="performance_report.php" class="btn">View Report</a>
             </div>
 
             <div class="card">
                 <h2>Manage Users</h2>
-                <p>View, add, or delete users.</p>
+                <p>View,update,Add Admin</p>
                 <a href="manage_user.php" class="btn">Manage Users</a>
             </div>
 
             <div class="card">
-                <h2>Manage Resources</h2>
-                <p>Approve or track resource requests.</p>
-                <a href="../resource/manage_resources.php" class="btn">View Resources</a>
-            </div>
-
-            <div class="card">
-                <h2>View Reports</h2>
-                <p>Check task progress and summaries.</p>
-                <a href="../report/reports.php" class="btn">View Reports</a>
-            </div>
-
-            <div class="card">
                 <h2>Logout</h2>
-                <p>Sign out of your CEO account.</p>
+                <p>Sign out your account.</p>
                 <a href="../logout.php" class="btn logout-btn">Logout</a>
             </div>
         </div>
     </div>
     
-    <?php echo "<a href='../logout.php'>logout</a>" ?>
     </body>
 </html>

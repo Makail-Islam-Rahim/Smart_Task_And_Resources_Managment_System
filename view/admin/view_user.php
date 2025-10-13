@@ -60,20 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="../css/admincss/common.css">
+<link rel="stylesheet" href="../css/admincss/view_user.css">
+
 <meta charset="UTF-8">
 <title>Manage User</title>
-<style>
-    body { font-family: Arial; margin: 40px; }
-    form { margin-top: 20px; }
-    label { display: inline-block; width: 120px; margin-bottom: 6px; }
-    input, select { padding: 5px; margin-bottom: 8px; width: 220px; }
-    button { padding: 6px 12px; margin-right: 8px; border: none; border-radius: 5px; cursor: pointer; }
-    .update { background: #007BFF; color: white; }
-    .pass { background: #17a2b8; color: white; }
-    .delete { background: #dc3545; color: white; }
-    a.back { text-decoration: none; background: #6c757d; color: white; padding: 6px 10px; border-radius: 5px; }
-    .msg { margin: 10px 0; color: green; font-weight: bold; }
-</style>
+
 </head>
 <body>
 

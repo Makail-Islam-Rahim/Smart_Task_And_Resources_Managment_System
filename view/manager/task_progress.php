@@ -24,18 +24,15 @@ $result = mysqli_query($conn, $sql);
 <html>
 <head>
     <title>Task Progress</title>
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 8px; }
-        th { background: #f4f4f4; }
-        .progress-bar { height: 20px; background: #ddd; border-radius: 10px; overflow: hidden; }
-        .progress { height: 20px; background: #28a745; text-align: center; color: white; font-size: 12px; }
-    </style>
+    
+<link rel="stylesheet" href="../css/managercss/common.css">
+<link rel="stylesheet" href="../css/managercss/task_progress.css">
 </head>
 <body>
 <h1>Task Progress</h1>
-<a href="home.php">← Back to Home</a>
+	        <li><?php echo "<a href='home.php'>Home</a>" ?></li>
+            <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
+            <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
 <table>
     <tr>
         <th>ID</th>

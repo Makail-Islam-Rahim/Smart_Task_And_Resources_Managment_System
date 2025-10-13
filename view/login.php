@@ -3,7 +3,12 @@
     require_once("../model/db.php");
     if(isset($_SESSION["userId"]))
     {
-        if(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 2)
+        if(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] ==1 )
+    {
+        header("Location:ceo/home.php");
+        
+    }
+        elseif(isset($_SESSION["RoleId"]) && $_SESSION["RoleId"] == 2)
     {
         header("Location:admin/home.php");
         
@@ -35,13 +40,15 @@
     if (!$conn) {
         die("Database connection failed: " . mysqli_connect_error());
     } else {
-        echo "Database connected successfully!<br>";
+        
     }
 ?>
 
 <!doctype html>
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="css/login_style.css">
+    </head>
     <body>
         <form action="../controller/authController.php" method="POST">
             <label for="userId">User ID: </label>

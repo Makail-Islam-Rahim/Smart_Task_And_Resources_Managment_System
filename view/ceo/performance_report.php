@@ -22,12 +22,11 @@ $reports = fetchPerformanceReports($conn);
 </head>
 <body>
 <div class="header">
-    <h1>CEO: Performance Reports</h1>
+    <h1>CEO Performance Reports</h1>
     <ul>
         <li><a href="home.php">Home</a></li>
         <li><a href="profile.php">Profile</a></li>
         <li><a href="accounts.php">Accounts</a></li>
-        <li><a href="analytics.php">Analytics</a></li>
         <li><a href="performance_report.php">Performance</a></li>
         <li><a href="../logout.php">Logout</a></li>
     </ul>
@@ -64,11 +63,12 @@ $reports = fetchPerformanceReports($conn);
             $progress = round((($taskRatio + $resRatio) / 2) * 100, 2);
         ?>
         <tr>
+           <td><?= $r['Report_Id'] ?></td>
             <td><?= $r['Report_Id'] ?></td>
-            <td><?= htmlspecialchars($r['Report_Date']) ?></td>
-            <td><?= htmlspecialchars($r['task_completed']) ?></td>
-            <td><?= htmlspecialchars($r['resource_amount']) ?></td>
-            <td><?= htmlspecialchars($r['resource_used']) ?></td>
+            <td><?= $r['Report_Date'] ?></td>
+            <td><?= $r['task_completed'] ?></td>
+            <td><?= $r['resource_amount'] ?></td>
+            <td><?= $r['resource_used'] ?></td>
             <td>
                 <div class="progress-bar">
                     <div class="progress" style="width: <?= $progress ?>%">

@@ -1,30 +1,50 @@
 body {
-    font-family: Arial;
+    font-family: 'Arial', sans-serif;
     margin: 40px;
+    background-color: #f5f6fa;
+    color: #333;
 }
 
 form {
     margin-top: 20px;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
 }
 
 label {
     display: inline-block;
-    width: 120px;
-    margin-bottom: 6px;
+    width: 130px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
 }
 
 input, select {
-    padding: 5px;
-    margin-bottom: 8px;
-    width: 220px;
+    padding: 8px 10px;
+    margin-bottom: 12px;
+    width: calc(100% - 140px);
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
 }
 
 button {
-    padding: 6px 12px;
-    margin-right: 8px;
+    padding: 8px 16px;
+    margin-right: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.2s;
 }
 
 button.update {
@@ -32,9 +52,19 @@ button.update {
     color: white;
 }
 
+button.update:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
 button.pass {
     background: #17a2b8;
     color: white;
+}
+
+button.pass:hover {
+    background: #117a8b;
+    transform: translateY(-2px);
 }
 
 button.delete {
@@ -42,16 +72,29 @@ button.delete {
     color: white;
 }
 
+button.delete:hover {
+    background: #a71d2a;
+    transform: translateY(-2px);
+}
+
 a.back {
+    display: inline-block;
     text-decoration: none;
     background: #6c757d;
     color: white;
-    padding: 6px 10px;
-    border-radius: 5px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+a.back:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
 }
 
 .msg {
-    margin: 10px 0;
-    color: green;
+    margin: 12px 0;
+    color: #28a745;
     font-weight: bold;
+    font-size: 1rem;
 }

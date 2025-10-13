@@ -15,7 +15,6 @@ $name=$_SESSION["Name"]
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>All User Accounts</title>
     <link rel="stylesheet" href="../css/ceo_accounts_style.css">
 </head>
@@ -28,7 +27,7 @@ $name=$_SESSION["Name"]
             <li><?php echo "<a href='home.php'>Home</a>" ?></li>
             <li><?php echo "<a href='profile.php'>Profile</a>" ?></li>    
              <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
-            <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
+            <li><?php echo "<a href='performance_report.php'>Performance</a>" ?></li>
             <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
         </ul>
     </div>
@@ -73,12 +72,12 @@ $name=$_SESSION["Name"]
 
     <?php foreach ($users as $u): ?>
         <tr>
-            <td><?= htmlspecialchars($u['userId']) ?></td>
-            <td><?= htmlspecialchars($u['Name']) ?></td>
-            <td><?= htmlspecialchars($u['Email']) ?></td>
-            <td><?= htmlspecialchars($u['RoleId']) ?></td>
-            <td><?= htmlspecialchars($u['Age']) ?></td>
-            <td><?= htmlspecialchars($u['Gender']) ?></td>
+            <td><?= $u['userId'] ?></td>
+            <td><?= $u['Name'] ?></td>
+            <td><?= $u['Email'] ?></td>
+            <td><?= $u['RoleId'] ?></td>
+            <td><?= $u['Age'] ?></td>
+            <td><?= $u['Gender'] ?></td>
         </tr>
     <?php endforeach; ?>
 </table>

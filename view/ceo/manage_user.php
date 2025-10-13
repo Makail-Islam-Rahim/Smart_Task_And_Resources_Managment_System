@@ -8,30 +8,26 @@ if (!isset($_SESSION["userId"]) || $_SESSION["RoleId"] != 1) {
 }
 
 $users = fetchAllUsers();
-
-
+$name=$_SESSION["Name"]
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>All User Accounts</title>
-   <link rel="stylesheet" href="../css/ceo_user_manage.css">
-    
+    <link rel="stylesheet" href="../css/ceo_user_manage.css">
 </head>
 <body>
 
 <div class="header" id="myHeader">
-    <h1>Welcome, CEO</h1>
+     <?php  echo "<h1>Welcome ".$name."</h1>" ?>
     <div class="side-menu">
         <ul>
-           <li><?php echo "<a href='home.php'>Home</a>" ?></li>
-            <li ><?php echo "<a href='profile.php'>Profile</a>" ?></li>
-            <li><?php echo "<a href='accounts.php'>Accounts</a>" ?></li>
-            <li><?php echo "<a href='analytics.php'>Analytics</a>" ?></li>
-            <li><?php echo "<a href='performance_report.php'>Performance</a>" ?></li>
-            <li><?php echo "<a href='../logout.php'>logout</a>" ?></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="profile.php">Profile</a></li>
+            <li><a href="accounts.php">Accounts</a></li>
+            <li><a href="performance_report.php">Performance</a></li>
+            <li><a href="../logout.php">Logout</a></li>
         </ul>
     </div>
 </div>
@@ -47,61 +43,63 @@ $users = fetchAllUsers();
         <th>Gender</th>
         <th>Action</th>
     </tr>
-
     <?php foreach ($users as $u): ?>
-        <tr>
-            <td><?= htmlspecialchars($u['userId']) ?></td>
-            <td><?= htmlspecialchars($u['Name']) ?></td>
-            <td><?= htmlspecialchars($u['Email']) ?></td>
-            <td><?= htmlspecialchars($u['RoleId']) ?></td>
-            <td><?= htmlspecialchars($u['Age']) ?></td>
-            <td><?= htmlspecialchars($u['Gender']) ?></td>
-            <td><a class="button" href="ceo_view_user.php?id=<?= $u['userId'] ?>">View</a>
-        </td>
-        </tr>
+    <tr>
+        <td><?= $u['userId'] ?></td>
+        <td><?= $u['Name'] ?></td>
+        <td><?= $u['Email'] ?></td>
+        <td><?= $u['RoleId'] ?></td>
+        <td><?= $u['Age'] ?></td>
+        <td><?= $u['Gender'] ?></td>
+        <td><a class="button" href="ceo_view_user.php?id=<?= $u['userId'] ?>">View</a></td>
+    </tr>
     <?php endforeach; ?>
 </table>
 
-<h2>Add New User</h2>
+<h2>Add Admin</h2>
+
 <?php
-if(isset($_GET['success'])){
+if (isset($_GET['success'])) {
     echo "<p style='color:green'>User added successfully!</p>";
 }
-if(isset($_GET['error']) && $_GET['error'] == 'email'){
+if (isset($_GET['error']) && $_GET['error'] == 'email') {
     echo "<p style='color:red'>This email is already registered.</p>";
 }
 ?>
-<form action="../../controller/authController.php" method="post">
+
+<form id="addUserForm" action="../../controller/authController.php" method="post" onsubmit="return validateForm()">
     <label>Name:</label><br>
-    <input type="text" name="name" required><br><br>
+    <input type="text" id="name" name="name"><br>
+    <span id="nameErr"></span><br>
 
     <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+    <input type="email" id="email" name="email"><br>
+    <span id="emailErr"></span><br>
 
     <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
-
-    <label>Role:</label><br>
-    <select name="roleId" required>
-        <option value="3">Admin</option>
-    </select><br><br>
+    <input type="password" id="password" name="password"><br>
+    <span id="passErr"></span><br>
 
     <label>Age:</label><br>
-    <input type="number" name="age" min="18" required><br><br>
+    <input type="number" id="age" name="age"><br>
+    <span id="ageErr"></span><br>
 
     <label>Gender:</label><br>
-    <select name="gender" required>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-    </select><br><br>
+    <input type="radio" id="male" name="gender" value="Male"> Male
+    <input type="radio" id="female" name="gender" value="Female"> Female<br>
+    <span id="genderErr"></span><br>
+
+    <label>Role:</label><br>
+    <select id="roleId" name="roleId">
+        <option value="">Select Role</option>
+        <option value="3">Admin</option>
+    </select><br>
+    <span id="roleErr"></span><br>
 
     <button type="submit" name="add_user">Add Admin</button>
-    <script>
-    var existingEmails = [
-        <?php foreach($users as $u) { echo "'". $u['Email'] ."',"; } ?>
-    ];
-</script>
 </form>
+
 <script src="../js/validateAddUser.js"></script>
+
 </body>
 </html>

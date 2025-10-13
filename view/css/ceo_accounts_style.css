@@ -10,7 +10,7 @@ body {
     color: #333;
 }
 
-/* Header */
+
 .header {
     width: 100%;
     background-color: #2c3e50;
@@ -30,7 +30,7 @@ body {
     color: #ecf0f1;
 }
 
-/* Side menu inside header */
+
 .header .side-menu ul {
     list-style: none;
     display: flex;
@@ -50,14 +50,14 @@ body {
     background-color: #34495e;
 }
 
-/* Main container */
+
 .container { 
     width: 95%;
     max-width: 1200px;
     margin: 40px auto;
 }
 
-/* Page heading */
+
 h1 { 
     color: #2c3e50;
     text-align: center;
@@ -65,7 +65,6 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* Cards layout (for account overview page) */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

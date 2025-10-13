@@ -1,0 +1,21 @@
+
+/* Admin refined - red theme, consistent with CEO/Employee */
+:root {
+  --primary: #d9534f;
+  --primary-dark: #c9302c;
+  --bg: #fff5f5;
+  --card-bg: #fff;
+  --text: #222;
+  --border: #f0cccc;
+}
+* { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--text); min-height: 100vh; }
+header, footer { background: var(--primary); color: #fff; padding: 14px; text-align: center; }
+.navbar a { color: #fff; text-decoration: none; margin: 0 8px; font-weight: 500; }
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin: 12px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+.btn { background: var(--primary); color: #fff; padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; }
+.btn:hover { background: var(--primary-dark); }
+input, select, textarea { border: 1px solid var(--border); border-radius: 6px; padding: 8px; width: 100%; }
+table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+th { background: var(--primary); color: #fff; }

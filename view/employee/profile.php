@@ -43,14 +43,14 @@
 
    <h2>Your Information</h2>
     <table>
-        <tr><th>User ID</th><td><?= htmlspecialchars($user['userId']) ?></td></tr>
-        <tr><th>Name</th><td><?= htmlspecialchars($user['Name']) ?></td></tr>
-        <tr><th>Email</th><td><?= htmlspecialchars($user['Email']) ?></td></tr>
-        <tr><th>Role ID</th><td><?= htmlspecialchars($user['RoleId']) ?></td></tr>
-        <tr><th>Age</th><td><?= htmlspecialchars($user['Age']) ?></td></tr>
-        <tr><th>Gender</th><td><?= htmlspecialchars($user['Gender']) ?></td></tr>
+    <tr><th>User ID</th><td><?= $user['userId'] ?></td></tr>
+    <tr><th>Name</th><td><?= $user['Name'] ?></td></tr>
+    <tr><th>Email</th><td><?= $user['Email'] ?></td></tr>
+    <tr><th>Role ID</th><td><?= $user['RoleId'] ?></td></tr>
+    <tr><th>Age</th><td><?= $user['Age'] ?></td></tr>
+    <tr><th>Gender</th><td><?= $user['Gender'] ?></td></tr>
     </table>
-    
+
     
 
     

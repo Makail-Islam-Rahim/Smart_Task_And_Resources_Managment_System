@@ -1,0 +1,6 @@
+table { border-collapse: collapse; width: 100%;}
+th, td { border: 1px solid #ccc; padding: 8px;}
+th { background: #f4f4f4;}
+.progress-bar { height: 20px; background: #ddd; border-radius: 10px; overflow: hidden;}
+.progress { height: 20px; background: #28a745; text-align: center; color: white; font-size: 12px;}
+[inline] {width: <?= $row['completion_rate'] ?>%}

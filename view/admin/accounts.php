@@ -13,23 +13,13 @@ $users = fetchAllUsers();
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="../css/admincss/common.css">
+<link rel="stylesheet" href="../css/admincss/accounts.css">
+
     <meta charset="utf-8">
     <title>All User Accounts</title>
     <link rel="stylesheet" href="../../css/style.css">
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        .header { background: #e3e3e3; padding: 15px; border-radius: 10px; }
-        .side-menu ul { list-style: none; padding: 0; }
-        .side-menu li { margin: 8px 0; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 8px 12px; }
-        th { background: #f4f4f4; }
-        a.button {
-            background: #007BFF; color: white; padding: 6px 10px;
-            border-radius: 5px; text-decoration: none;
-        }
-        a.button:hover { background: #0056b3; }
-    </style>
+    
 </head>
 <body>
 

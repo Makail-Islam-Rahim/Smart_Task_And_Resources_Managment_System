@@ -24,7 +24,7 @@ $total = countTotalTasks($userId);
 </head>
 <body>
 <div class="header">
-    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['Name']); ?></h1>
+   <h1>Welcome <?= $_SESSION['Name'] ?></h1>
     <div class="side-menu">
         <ul>
             <li><a href="home.php" >Home</a></li>
@@ -60,15 +60,17 @@ $total = countTotalTasks($userId);
     <?php if ($myTasks && count($myTasks) > 0) { ?>
         <div class="task-container">
             <?php foreach ($myTasks as $t) { ?>
-                <div class="task-card">
-                    <h3><?php echo htmlspecialchars($t['task_type']); ?></h3>
-                    <p>Status: <?php echo htmlspecialchars($t['status']); ?></p>
-                    <p>Deadline: <?php echo htmlspecialchars($t['deadline']); ?></p>
-                    <p class="completion">Completion: <?php echo htmlspecialchars($t['completion_rate']); ?>%</p>
-                    <div class="progress-bar">
-                        <div class="fill" style="width:<?php echo htmlspecialchars($t['completion_rate']); ?>%;"></div>
-                    </div>
-                </div>
+            <div class="task-card">
+            <h3><?= $t['task_type'] ?></h3>
+            <p>Status: <?= $t['status'] ?></p>
+            <p>Deadline: <?= $t['deadline'] ?></p>
+            <p class="completion">Completion: <?= $t['completion_rate'] ?>%</p>
+            <div class="progress-bar">
+                <div class="fill" style="width:<?= $t['completion_rate'] ?>%;"></div>
+            </div>
+        </div>
+
+
             <?php } ?>
         </div>
     <?php } else { ?>

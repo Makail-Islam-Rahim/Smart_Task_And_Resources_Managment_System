@@ -1,4 +1,3 @@
-/* Reset default browser styles */
 * {
     margin: 0;
     padding: 0;
@@ -25,7 +24,7 @@ body {
 
 .brand h1 {
     font-size: 22px;
-    color: #ecf0f1;
+    color: rgb(236, 240, 241);
 }
 
 .header ul {
@@ -36,22 +35,17 @@ body {
 
 .header ul li a {
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 20px;
     padding: 8px 14px;
     border-radius: 4px;
-    transition: 0.3s;
-}
-
-.header ul li a:hover {
-    background-color: #1abc9c;
+    transition: none;
 }
 
 .content {
     padding: 40px;
 }
 
-/* Elegant Table Styling (Centered & Compact, RGB Version) */
 table {
     width: 65%;
     margin: 40px auto;
@@ -60,7 +54,6 @@ table {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    
 }
 
 th, td {
@@ -84,17 +77,17 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: rgb(249, 249, 249); /* #f9f9f9 */
+    background-color: rgb(249, 249, 249);
 }
 
 tr:hover {
-    background-color: rgb(238, 245, 255); /* #eef5ff */
+    background-color: rgb(238, 245, 255); 
     transition: background 0.3s ease;
 }
 
 h2 {
     text-align: center;
     margin-top: 30px;
-    color: rgb(44, 62, 80); /* #2c3e50 */
+    color: rgb(44, 62, 80); 
     font-size: 24px;
 }

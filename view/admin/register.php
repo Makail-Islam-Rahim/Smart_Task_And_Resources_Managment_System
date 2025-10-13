@@ -25,6 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!doctype html>
 <html>
     <head>
+<link rel="stylesheet" href="../css/admincss/common.css">
+<link rel="stylesheet" href="../css/admincss/register.css">
+
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
@@ -39,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href='../logout.php'>Logout</a></li>
             </ul>
         </div>
- 
+    </div>
         <form method="post" action="">
             <h2>Register</h2>
             Name: <input type="text" name="name" required><br>

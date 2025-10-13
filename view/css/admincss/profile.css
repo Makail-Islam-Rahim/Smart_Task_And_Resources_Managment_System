@@ -1,0 +1,6 @@
+body { font-family: Arial, sans-serif; margin: 40px; }
+        .header { background: #e3e3e3; padding: 15px; border-radius: 10px; }
+        .side-menu ul { list-style: none; padding: 0; }
+        .side-menu li { margin: 8px 0; }
+        table { border-collapse: collapse; width: 60%; margin-top: 20px; }
+        th { background: #f4f4f4; text-align: left; }
