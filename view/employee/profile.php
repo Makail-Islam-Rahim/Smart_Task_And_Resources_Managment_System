@@ -14,7 +14,14 @@
         echo "<h3>User not found.</h3>";
         exit;
     }
-    
+    if (isset($_POST["change_password"])) {
+        $newPass = $_POST["new_password"];
+        if (changeUserPassword($userId, $newPass)) {
+            $msg = "Password updated successfully!";
+        } else {
+            $msg = "Failed to update password.";
+        }
+    }
     $email=$_SESSION["email"];
     $age=$_SESSION["age"];
     $name=$_SESSION["Name"];
@@ -52,7 +59,12 @@
     </table>
 
     
-
+     <h2>Change Password</h2>
+    <form method="post" action="../../controller/userController.php">
+        <label>New Password:</label>
+        <input type="password" name="new_password" required><br>
+        <button type="submit" name="change_password" class="pass">Change Password</button>
+    </form>
     
     </body>
 </html>

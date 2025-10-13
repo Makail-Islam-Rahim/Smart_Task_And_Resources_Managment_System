@@ -9,7 +9,7 @@ $message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['generate_report'])) {
         if (generatePerformanceReport()) {
-            $message = '✅ New performance report generated successfully!';
+            $message = ' New performance report generated successfully!';
         } else {
             $message = '⚠️ Failed to generate report.';
         }

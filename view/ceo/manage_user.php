@@ -92,7 +92,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'email') {
     <label>Role:</label><br>
     <select id="roleId" name="roleId">
         <option value="">Select Role</option>
-        <option value="3">Admin</option>
+        <option value="2">Admin</option>
     </select><br>
     <span id="roleErr"></span><br>
 

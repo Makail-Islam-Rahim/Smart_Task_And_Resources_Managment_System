@@ -24,27 +24,26 @@ ORDER BY pr.Report_Id DESC""";
 function generatePerformanceReport() {
     $conn = getConnection();
     if (!$conn) return false;
-    // compute counts
+    
     $tasksDone = 0; $totalTasks = 0; $totalResources = 0; $usedResources = 0;
     $r = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS done FROM task WHERE status='Done'")); if ($r) $tasksDone = intval($r['done']);
     $r = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM task")); if ($r) $totalTasks = intval($r['total']);
     $r = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COALESCE(SUM(Resource_amount),0) AS total FROM resource")); if ($r) $totalResources = intval($r['total']);
     $r = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS used FROM resource WHERE status='Approved'")); if ($r) $usedResources = intval($r['used']);
 
-    // insert report
+  
     $stmt = mysqli_prepare($conn, "INSERT INTO performance_report (Report_Date) VALUES (CURDATE())");
     if (!$stmt) { mysqli_close($conn); return false; }
     mysqli_stmt_execute($stmt);
     $reportId = mysqli_insert_id($conn);
     mysqli_stmt_close($stmt);
 
-    // insert report_task
     $stmt = mysqli_prepare($conn, "INSERT INTO report_task (Report_Id, task_completed) VALUES (?, ?)");
     mysqli_stmt_bind_param($stmt, 'ii', $reportId, $tasksDone);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    // insert report_resource
+ 
     $stmt = mysqli_prepare($conn, "INSERT INTO report_resource (Report_Id, resource_amount, resource_used) VALUES (?, ?, ?)");
     mysqli_stmt_bind_param($stmt, 'iii', $reportId, $totalResources, $usedResources);
     mysqli_stmt_execute($stmt);

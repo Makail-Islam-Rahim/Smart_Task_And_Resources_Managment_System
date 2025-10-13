@@ -13,12 +13,12 @@ $users = fetchAllUsers();
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="../css/admincss/common.css">
-<link rel="stylesheet" href="../css/admincss/accounts.css">
 
     <meta charset="utf-8">
     <title>All User Accounts</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    
     
 </head>
 <body>

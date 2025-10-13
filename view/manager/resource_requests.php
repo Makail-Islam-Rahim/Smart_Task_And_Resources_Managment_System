@@ -1,36 +1,23 @@
 <?php
 session_start();
 require_once("../../model/db.php");
+require_once("../../model/resource_requestsModel.php");
 
-// Only managers can access this page
 if (!isset($_SESSION['userId']) || $_SESSION['RoleId'] != 3) {
     header("Location: ../login.php");
     exit;
 }
 
-// Include model if exists
-require_once("../../model/resource_requestsModel.php");
 
-// If model isn’t loaded or variables missing, fetch directly (fallback)
-if (!function_exists('getManagerResourceRequests')) {
-    function getManagerResourceRequests() {
-        $conn = getConnection();
-        $sql = "SELECT r.Request_ID, r.Resource_Name, r.Resource_amount, 
-                       r.status, u.Name AS requested_by
-                FROM resource r
-                JOIN user u ON r.Request_By = u.userId
-                ORDER BY r.Request_ID DESC";
-        $result = mysqli_query($conn, $sql);
-        $data = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = $row;
-        }
-        mysqli_close($conn);
-        return $data;
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['request_id'], $_POST['action'])) {
+    $requestId = intval($_POST['request_id']);
+    $action = $_POST['action'] === 'approve' ? 'Approved' : 'Rejected';
+    updateResourceStatus($requestId, $action);
+    header("Location: resource_requests.php");
+    exit;
 }
 
-// Fetch requests
+
 $requests = getManagerResourceRequests();
 ?>
 
@@ -41,6 +28,23 @@ $requests = getManagerResourceRequests();
     <title>Manager Resource Requests</title>
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/manager/common.css">
+    <style>
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        form {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
 
@@ -63,6 +67,7 @@ $requests = getManagerResourceRequests();
             <th>Amount</th>
             <th>Requested By</th>
             <th>Status</th>
+            <th>Action</th>
         </tr>
         <?php if (!empty($requests)): ?>
             <?php foreach ($requests as $req): ?>
@@ -71,13 +76,24 @@ $requests = getManagerResourceRequests();
                 <td><?= htmlspecialchars($req['Resource_Name']) ?></td>
                 <td><?= htmlspecialchars($req['Resource_amount']) ?></td>
                 <td><?= htmlspecialchars($req['requested_by']) ?></td>
-                <td class="<?= $req['status'] == 'Approved' ? 'text-success' : '' ?>">
+                <td class="<?= $req['status'] == 'Approved' ? 'text-success' : ($req['status'] == 'Rejected' ? 'text-danger' : '') ?>">
                     <?= htmlspecialchars($req['status']) ?>
+                </td>
+                <td>
+                    <?php if ($req['status'] == 'Pending'): ?>
+                        <form method="post" action="">
+                            <input type="hidden" name="request_id" value="<?= $req['Request_ID'] ?>">
+                            <button type="submit" name="action" value="approve" class="btn">Approve</button>
+                            <button type="submit" name="action" value="reject" class="btn-danger">Reject</button>
+                        </form>
+                    <?php else: ?>
+                        <span class="text-muted">No action</span>
+                    <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
-            <tr><td colspan="5">No resource requests found.</td></tr>
+            <tr><td colspan="6">No resource requests found.</td></tr>
         <?php endif; ?>
     </table>
 </div>

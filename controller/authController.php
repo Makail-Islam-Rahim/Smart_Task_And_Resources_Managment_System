@@ -96,16 +96,16 @@
         {
                  if (isset($_SESSION["RoleId"])) {
             switch ($_SESSION["RoleId"]) {
-                case 1: // CEO
+                case 1: 
                     header("Location: ../view/ceo/manage_user.php");
                     exit;
-                case 2: // Admin
+                case 2: 
                     header("Location: ../view/admin/accounts.php");
                     exit;
-                case 3: // Manager
+                case 3: 
                     header("Location: ../view/manager/accounts.php");
                     exit;
-                case 4: // Employee (if needed)
+                case 4: 
                     header("Location: ../view/employee/accounts.php");
                     exit;
                 default:

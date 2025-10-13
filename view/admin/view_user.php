@@ -2,13 +2,13 @@
 session_start();
 require_once("../../controller/userController.php");
 
-//Only admins can access
+
 if (!isset($_SESSION["userId"]) || $_SESSION["RoleId"] != 2) {
     header("Location: ../login.php");
     exit;
 }
 
-//Get user info
+
 if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
     echo "<p>Invalid user ID.</p>";
     exit;
@@ -21,7 +21,7 @@ if (!$user) {
     exit;
 }
 
-//Handle CRUD form submissions
+
 $msg = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["update_user"])) {

@@ -9,7 +9,7 @@ if (!isset($_SESSION['userId']) || $_SESSION['RoleId'] != 3) {
 
 $conn = getConnection();
 
-// we are getting the tasks assigned by manager here
+
 $sql = "SELECT t.taskID, t.task_type, t.status, t.completion_rate, t.deadline,
                u.Name AS employee
         FROM task t

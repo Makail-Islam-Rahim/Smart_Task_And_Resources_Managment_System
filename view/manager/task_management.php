@@ -9,7 +9,7 @@ if (!isset($_SESSION['userId']) || $_SESSION['RoleId'] != 3) {
 
 $conn = getConnection();
 
-//  new Task Assignment add
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $taskType = $_POST["task_type"];
     $status = "Pending";
@@ -26,10 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                          VALUES ($taskId, $assignedBy, $assignedTo)");
 }
 
-// employees listing view
-/* removed SQL: moved to model function get_task_management_employees() */
 
-// get all tasks assigned by any particular manager
 $sql = "SELECT t.taskID, t.task_type, t.status, t.deadline, t.completion_rate, u.Name AS employee
         FROM task t
         JOIN task_assignment ta ON t.taskID = ta.taskID

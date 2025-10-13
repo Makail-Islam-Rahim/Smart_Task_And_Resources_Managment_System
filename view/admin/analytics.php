@@ -8,7 +8,7 @@ if (!isset($_SESSION['userId']) || $_SESSION['RoleId'] != 2) {
     exit;
 }
 
-// if not already set by controller, fetch manually
+
 if (!isset($tasks)) {
     $tasks = getAnalyticsTasks();
 }

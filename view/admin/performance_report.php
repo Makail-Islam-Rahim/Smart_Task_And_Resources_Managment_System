@@ -10,11 +10,11 @@ if (!isset($_SESSION['userId']) || $_SESSION['RoleId'] != 2) {
 $conn = getConnection();
 $message = "";
 
-/* report delete*/
+
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
 
-    // Delete linked rows first (foreign keys)
+   
     mysqli_query($conn, "DELETE FROM report_task WHERE Report_Id=$id");
     mysqli_query($conn, "DELETE FROM report_resource WHERE Report_Id=$id");
     mysqli_query($conn, "DELETE FROM performance_report WHERE Report_Id=$id");
@@ -22,21 +22,19 @@ if (isset($_GET['delete'])) {
     $message = "🗑️ Report #$id deleted successfully!";
 }
 
-/*report edit*/
 if (isset($_POST['update_report'])) {
     $id = intval($_POST['report_id']);
     $tasksCompleted = intval($_POST['task_completed']);
     $resTotal = intval($_POST['resource_amount']);
     $resUsed = intval($_POST['resource_used']);
 
-    // Update the linked tables
+   
     mysqli_query($conn, "UPDATE report_task SET task_completed=$tasksCompleted WHERE Report_Id=$id");
     mysqli_query($conn, "UPDATE report_resource SET resource_amount=$resTotal, resource_used=$resUsed WHERE Report_Id=$id");
 
     $message = "✏️ Report #$id updated successfully!";
 }
 
-/*report generation*/
 if (isset($_POST["generate_report"])) {
     $tasksDone = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS done FROM task WHERE status='Done'"))["done"];
     $totalTasks = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM task"))["total"];
@@ -53,7 +51,6 @@ if (isset($_POST["generate_report"])) {
     $message = "✅ New performance report generated successfully!";
 }
 
-/*reports fetching*/
 $sql = "
 SELECT 
     pr.Report_Id,
